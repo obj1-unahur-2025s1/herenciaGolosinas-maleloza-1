@@ -34,11 +34,12 @@ class Alfajor {
 
 class Caramelo {
 	var peso = 5
+	var sabor
 
 	method precio() { return 12 }
 	method peso() { return peso }
 	method mordisco() { peso = peso - 1 }
-	method sabor() { return frutilla }
+	method sabor() { return sabor }
 	method libreGluten() { return true }
 }
 
@@ -119,4 +120,42 @@ class Tuttifrutti {
 	method peso() { return 5 }
 	method libreGluten() { return libreDeGluten }	
 	method libreGluten(valor) { libreDeGluten = valor }
+}
+
+
+
+class BombonDuro inherits Bombon{	
+	override method mordisco() { peso -= 1 }
+	method dureza() { if(peso >= 12) 3 else if(peso.between(8, 12)) 2 else 1 }
+}
+
+class CarameloConChocolate inherits Caramelo{
+	override method precio() { return super()+1 }
+	override method mordisco() { 
+		super()
+		sabor = chocolate	
+	}
+}
+
+class ObleaCrujiente inherits Oblea {
+	var mordiscos = 0
+	override method mordisco() {
+		super()
+		if(mordiscos < 3){
+			peso -= 3
+			mordiscos += 1
+		}
+	}
+	method estaDebil() = mordiscos > 3
+}
+
+class ChocolatinVIP inherits Chocolatin{
+	var humedad = 0
+	override method peso() {
+		return (pesoInicial - comido) * (1 + humedad)
+	}
+}
+
+class ChocolatinPremium inherits ChocolatinVIP {
+	
 }
