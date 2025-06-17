@@ -32,7 +32,6 @@ object mariano {
 	}
 	
 	
-	
 	method golosinaDeSabor(_sabor) {
 		return golosinas.find({ golosina => golosina.sabor() == _sabor })
 	}
@@ -44,7 +43,6 @@ object mariano {
 	method sabores() {
 		return golosinas.map({ golosina => golosina.sabor() }).asSet()
 	}
-
 
 
 	method golosinaMasCara() {
@@ -62,5 +60,9 @@ object mariano {
 	
 	method tieneGolosinaDeSabor(_sabor) {
 		return golosinas.any({_golosina => _golosina.sabor() == _sabor})
+	}
+
+	method baniarGolosina(unaGolosina) {
+		golosinas.add(new GolosinaBaniada(golosinaInterior = unaGolosina))
 	}
 }
